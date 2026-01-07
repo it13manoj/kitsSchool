@@ -1,0 +1,61 @@
+require('dotenv').config()
+
+const http = require('http')
+const express = require('express')
+const cors = require ('cors')
+const bodyparser = require('body-parser')
+const app = express()
+const homeRoute = require('./Route/home')
+const aboutRoute = require('./Route/about')
+const classRoute = require('./Route/class')
+const teacherRoute = require('./Route/teacher')
+const galleryRoute = require('./Route/gallery')
+const blogRoute = require('./Route/blog')
+const usersRoute = require('./Route/Users')
+const commentRoute = require('./Route/comments')
+const facilitiesRoute = require('./Route/facilities')
+const blogdetailsRoute = require('./Route/blogdetaills')
+const contactsRoute = require('./Route/contacts')
+const kidsRoute = require('./Route/kidsclasses')
+const stdclsRoute = require('./Route/studentclass')
+const subRoute = require('./Route/subject')
+const timeRoute = require('./Route/time')
+const classesRoute = require('./Route/classes')
+const examRoute = require('./Route/exam')
+const scheduRoute = require('./Route/schedule')
+const resultRoute = require('./Route/studentresult')
+const path = require('path')
+
+
+
+const PORT = process.env
+
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({extended:true}))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use(cors())
+app.use('/api',homeRoute)
+app.use('/api',aboutRoute)
+app.use('/api',classRoute)
+app.use('/api',teacherRoute)
+app.use('/api',galleryRoute)
+app.use('/api',blogRoute)
+app.use('/api',usersRoute)
+app.use('/api',commentRoute)
+app.use('/api',facilitiesRoute)
+app.use('/api',blogdetailsRoute)
+app.use('/api',contactsRoute)
+app.use('/api',kidsRoute)
+app.use('/api',stdclsRoute)
+app.use('/api',subRoute)
+app.use('/api',timeRoute)
+app.use('/api',classesRoute)
+app.use('/api',examRoute)
+app.use('/api',scheduRoute)
+app.use('/api',resultRoute)
+
+
+http.createServer(app).listen(PORT,(req,resp)=>{
+    console.log('Server Start!')
+})
